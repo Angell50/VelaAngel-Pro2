@@ -9,10 +9,9 @@
         <Entry x:Name="vcEntryName" Placeholder="Ingrese el nombre de quien realiza la recarga" />
         <Button x:Name="vcButtonRecargar" Text="Recargar" Clicked="OnRecargarClicked" />
 
-        <!-- Mostrar recargas anteriores -->
-        <Label Text="Historial de recargas:" FontAttributes="Bold" FontSize="16" Margin="10,20,0,10" />
-        <ScrollView>
-            <StackLayout x:Name="vcRecargasStack" />
-        </ScrollView>
+        <!-- Mostrar última recarga -->
+        <Label Text="La última recarga realizada fue:" FontAttributes="Bold" FontSize="16" Margin="10,20,0,10" />
+        <Label x:Name="vcLabelName" Text="Nombre: XXXXXXXXXXXX" />
+        <Label x:Name="vcLabelNumber" Text="Número: XXXXXXXXX" />
     </StackLayout>
 </ContentPage>

@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace VelaAngel_Pro2.Pages
 {
@@ -12,24 +10,24 @@ namespace VelaAngel_Pro2.Pages
         public PageOne()
         {
             InitializeComponent();
-            // Generar la ruta del archivo basada en el nombre del estudiante
+
             string studentName = "VelaAngel";
+
             filePath = Path.Combine(FileSystem.AppDataDirectory, $"{studentName}.txt");
 
-            // Cargar todas las recargas si existen
-            LoadAllRecharges();
+            LoadLastRecharge();
         }
 
-        private void LoadAllRecharges()
+        private void LoadLastRecharge()
         {
-            // Verificar si el archivo existe
+            
             if (File.Exists(filePath))
             {
-                var lines = File.ReadAllLines(filePath);
-                foreach (var line in lines)
+                var data = File.ReadAllLines(filePath);
+                if (data.Length >= 2)
                 {
-                    // Cada recarga se muestra como una línea en el StackLayout
-                    vcRecargasStack.Children.Add(new Label { Text = line, FontSize = 14 });
+                    vcLabelName.Text = $"Nombre: {data[0]}";
+                    vcLabelNumber.Text = $"Número: {data[1]}";
                 }
             }
         }
@@ -45,18 +43,15 @@ namespace VelaAngel_Pro2.Pages
                 return;
             }
 
-            // Crear el texto de la recarga
-            string rechargeRecord = $"Nombre: {name}, \n" +
-                $"Número: {phoneNumber}";
-
-            // Agregar la recarga al archivo
-            File.AppendAllLines(filePath, new[] { rechargeRecord });
+            // Guardar solo la última recarga en el archivo
+            File.WriteAllLines(filePath, new[] { name, phoneNumber });
 
             // Mostrar mensaje de éxito
             await DisplayAlert("Éxito", "La recarga fue realizada con éxito.", "OK");
 
-            // Mostrar la nueva recarga en la interfaz
-            vcRecargasStack.Children.Add(new Label { Text = rechargeRecord, FontSize = 14 });
+            // Actualizar los datos en la UI
+            vcLabelName.Text = $"Nombre: {name}";
+            vcLabelNumber.Text = $"Número: {phoneNumber}";
 
             // Limpiar los campos de entrada
             vcEntryPhone.Text = string.Empty;
