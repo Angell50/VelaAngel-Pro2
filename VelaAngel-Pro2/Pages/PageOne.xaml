@@ -1,0 +1,18 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VelaAngel_Pro2.Pages.PageOne">
+    <StackLayout Padding="20" Spacing="10">
+        <Label Text="Recarga telefónica" FontSize="20" HorizontalOptions="Center" />
+
+        <!-- Entrada de datos -->
+        <Entry x:Name="vcEntryPhone" Placeholder="Ingrese el número de teléfono" Keyboard="Numeric" />
+        <Entry x:Name="vcEntryName" Placeholder="Ingrese el nombre de quien realiza la recarga" />
+        <Button x:Name="vcButtonRecargar" Text="Recargar" Clicked="OnRecargarClicked" />
+
+        <!-- Mostrar recargas anteriores -->
+        <Label Text="Historial de recargas:" FontAttributes="Bold" FontSize="16" Margin="10,20,0,10" />
+        <ScrollView>
+            <StackLayout x:Name="vcRecargasStack" />
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

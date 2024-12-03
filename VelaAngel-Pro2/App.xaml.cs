@@ -1,4 +1,6 @@
-﻿namespace VelaAngel_Pro2
+﻿using VelaAngel_Pro2.Pages;
+
+namespace VelaAngel_Pro2
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new PageOne());
         }
     }
 }
