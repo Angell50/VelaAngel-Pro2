@@ -8,7 +8,7 @@ namespace VelaAngel_Pro2
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new PageOne());
+            MainPage = new AppShell();
         }
     }
 }
